@@ -1,1 +1,1 @@
-All of my random creations, mainly coded in python
+TheKeyIsPassword is a project that offers a cryptogram puzzle with three progressively difficult stages. Each stage presents participants with encoded messages or ciphers that they must decipher. As they progress, the challenges become more intricate and require a deeper understanding of cryptography. The project aims to provide an engaging and intellectually stimulating experience for puzzle enthusiasts, promoting problem-solving skills and collaboration.
