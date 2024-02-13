@@ -1,0 +1,1 @@
+MIMIjme is a script based on Mimikatz that exports mimikatz info to a discord webhook

