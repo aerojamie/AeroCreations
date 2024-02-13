@@ -1,0 +1,43 @@
+Hermes
+
+Hermes is a Python script designed to test the strength of passwords by brute-forcing them character by character. It also sends the provided password to a specified Discord webhook for further analysis.
+
+Usage
+
+To use Hermes, simply execute the script and follow the prompts. Enter the password you want to test when prompted, and Hermes will start guessing the password character by character.
+
+Important Notes
+
+	•	Use Hermes responsibly and only on passwords that you own or have explicit permission to test.
+	•	Be aware that brute-forcing passwords is a time-consuming process and may not always be successful.
+	•	Ensure that you have permission to send data to the specified Discord webhook.
+
+Disclaimer
+
+This script is provided for educational and research purposes only. The author assumes no liability for any misuse or damage caused by the script. Use it at your own risk.
+
+License
+
+This script is licensed under the MIT License. See the LICENSE file for details.
+
+Documentation
+
+Script Functionality
+
+	1.	Webhook URL: Specifies the Discord webhook URL where the password is sent for further analysis.
+	2.	Custom Figlet Banner: Displays a custom figlet banner with the script name.
+	3.	Main Title Display: Displays the main title of the script.
+	4.	User Input: Prompts the user to enter the password to be tested.
+	5.	File Writing: Writes the user-provided password to a file for processing.
+	6.	Password Sending: Sends the password to the specified Discord webhook for analysis.
+	7.	Password Guessing: Brute-forces the password character by character using itertools.product.
+	8.	Progress Bar: Displays a progress bar indicating the number of attempts made.
+	9.	Output Display: Prints the guessed password and the number of attempts it took.
+	10.	Exit Prompt: Prompts the user to press enter before exiting.
+
+Troubleshooting
+
+	•	If the script fails to execute, ensure that the required dependencies (requests, tqdm, pyfiglet) are installed.
+	•	Check network connectivity for sending data to the Discord webhook.
+
+For any further assistance or inquiries, please contact the script author.
